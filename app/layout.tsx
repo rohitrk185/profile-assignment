@@ -1,13 +1,8 @@
-import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-
 const inter = Inter({ subsets: ['latin'] });
-
-export const metadata: Metadata = {
-  title: 'Profile.fyi Rohit RK',
-  description: 'Assignment',
-};
+import { Toaster } from 'react-hot-toast';
+import { CartProvider, ProductsProvider } from '@/context/ProductContext';
 
 export default function RootLayout({
   children,
@@ -17,8 +12,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header></header>
-        {children}
+        <ProductsProvider>
+          <CartProvider>
+            <Toaster />
+            {children}
+          </CartProvider>
+        </ProductsProvider>
       </body>
     </html>
   );
